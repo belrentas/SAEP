@@ -22,6 +22,11 @@ def Login_Professor(request):
         else:
             return HttpResponse('E-mail ou Senha incorretos')
         
+# logout
+def logout_usuario(request):
+    logout(request)
+    return redirect('/')
+        
 #Cadastrar Professor
 def Cadastro(request):
     if request.method == 'GET':

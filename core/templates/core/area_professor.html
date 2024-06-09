@@ -4,6 +4,7 @@
 {% block content %}
 <div id="professor-conteiner">
     <button><a href="{% url 'Cadastro_Turma' id=user.id %}">Criar Turma</a></button>
+    <button><a href="{% url 'logout_usuario' %}">Logout</a></button>
 
     {% for turma in turmas %}
     <div>
