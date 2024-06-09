@@ -3,12 +3,14 @@
 
 {% block content %}
 <div id="cadastro-conteiner">
-    <form id="cadastro" action="{% url 'Cadastro_Atividades' id=user.id %}" method="POST">
+    <form id="cadastro" action="{% url 'Cadastrar_Atividade' id=user.id %}" method="POST">
         {% csrf_token %}
         <p id="title-cadastro">Criar Atividade</p>
         <input type="text" name="Nome_Atividade" placeholder="Nome" class="cadastro-input">
         <select name="Turmas">
-            <option>{{ turma.Nome_Turma }}</option>
+            {% for turma in turmas %}
+                <option>{{ turma.Nome_Turma }}</option>
+            {% endfor %}
         </select>
 
 

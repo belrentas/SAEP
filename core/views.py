@@ -74,21 +74,21 @@ def Cadastro_Atividades(request, id):
     usuario = get_object_or_404(User, pk=id)
     turmas = Turma.objects.all()
     if request.method == 'GET':
-        return render(request, 'core/cadastro_atividades.html',{'Turmas': turmas})
+        return render(request, 'core/cadastro_atividades.html',{'turmas': turmas})
     else:
         nome_atividade = request.POST.get('Nome_Atividade')
-        turma = request.POST.get('Turmas')
+        nome_turma = request.POST.get('Turmas')
         for turma in turmas:
-            if turma.
-            if nome_atividade != '':
-                Atividade = Atividade.objects.create(
-                    Nome_item = nome_atividade,
-                    id_usuario = usuario,
-                    First_Name = usuario.first_name,
-                    id_turma = 
-                    Nome_Turma = 
-                )
-                nome_atividade.save()
-                return HttpResponse('Atividade cadastrada')
-            else:
-                return HttpResponse('Verifique os campos')
+            if turma.Nome_Turma in nome_turma:
+                if nome_atividade != '':
+                    atividade = Atividades.objects.create(
+                        Nome_item = nome_atividade,
+                        id_usuario = usuario,
+                        First_Name = usuario.first_name,
+                        id_lista = turma, 
+                        Nome_Turma = nome_turma,
+                    )
+                    atividade.save()
+                    return HttpResponse('Atividade cadastrada')
+                else:
+                    return HttpResponse('Verifique os campos')
