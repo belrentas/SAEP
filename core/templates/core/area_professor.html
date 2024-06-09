@@ -3,18 +3,32 @@
 
 {% block content %}
 <div id="professor-conteiner">
-    <h1>Ola Prof.{{user.first_name}} {{user.last_name}}</h1>
+    <header id="header-prof">
+        <p id="txt-saudacao">Ola Prof. {{user.first_name}} {{user.last_name}}</p>
 
-    <button><a href="{% url 'Cadastro_Turma' id=user.id %}">Criar Turma</a></button>
-    <button><a href="{% url 'logout_usuario' %}">Logout</a></button>
+        <div id="btns">
+            <a class="botao-u" href="{% url 'Cadastro_Turma' id=user.id %}">Criar Turma</a>
+            <a class="botao-u" href="{% url 'logout_usuario' %}">Logout</a>
+        </div>
+    </header>
 
-    {% for turma in turmas_professor %}
-    <div>
-        <p>{{ turma.id }}</p>
-        <a href="{% url 'area_turma' id=turma.id %}" >{{ turma.Nome_Turma }}</a>
-        <a href="{% url 'Confirm' id_turma=turma.id %}">excluir</a>
+    <div id="turmas">
+        <header id="header-turmas">
+            <p>ID</p>
+            <p>Nome da Turma</p>
+        </header>
+        {% for turma in turmas_professor %}
+        <div class="turma">
+            <p>{{ turma.id }}</p>
+            <p>{{ turma.Nome_Turma }}</p>
+            <div id="btn-action">
+                <a id="visualizar" href="{% url 'area_turma' id=turma.id %}" >Visualizar</a>
+                <a id="excluir" href="{% url 'Confirm' id_turma=turma.id %}">excluir</a>
+            </div>
+            
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock content %}

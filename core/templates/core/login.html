@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div id="login-conteiner">
+<div id="login-container">
     <form id="login" action="{% url 'Login_Professor' %}" method="post">
         {% csrf_token %}
         <p id="txt-login">Login Professor</p>
@@ -10,9 +10,7 @@
         <input type="password" name="Senha_Professor" placeholder="Senha" class="login-input">
         <button type="submit" id="logar">Logar</button>
 
-        <a href="/Cadastro/">Ainda não tem cadastro?</a>
+        <a id="link" href="/Cadastro/">Ainda não tem cadastro?</a>
     </div>
 </div>
-
-
 {% endblock content %}
