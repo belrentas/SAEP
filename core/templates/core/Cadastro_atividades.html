@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-<div id="cadastro-conteiner">
-    <form id="cadastro" action="{% url 'Cadastrar_Atividade' id_usuario=user.id id_turma=turma.id %}" method="POST">
+<div id="login-container">
+    <form id="login" action="{% url 'Cadastrar_Atividade' id_usuario=user.id id_turma=turma.id %}" method="POST">
         {% csrf_token %}
-        <p id="title-cadastro">Criar Atividade</p>
-        <input type="text" name="Nome_Atividade" placeholder="Nome" class="cadastro-input">
+        <p id="txt-login">Criar Atividade</p>
+        <input type="text" name="Nome_Atividade" placeholder="Nome" class="login-input">
 
-        <button type="submit" id="cadastrar">Criar Atividade</button>
+        <button type="submit" id="logar">Criar</button>
     </form>
 </div>
 

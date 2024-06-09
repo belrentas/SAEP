@@ -6,11 +6,12 @@
 
     <header id="header-prof">
         <p id="txt-saudacao">Turma: {{ turma.Nome_Turma }}</p>
-        
         <div id="btns">
             <a class="botao-u" href="{% url 'Cadastrar_Atividade' id_usuario=user.id id_turma=turma.id %}">Criar Atividade</a>
         </div>
     </header>
+
+    <p>prof:{{turma.First_Name}}</p>
 
     <div id="turmas">
         <header id="header-turmas">
