@@ -125,7 +125,7 @@ def Excluir_Turma(request, id_turma):
     atividades = Atividades.objects.all()
 
     for atividade in atividades:
-        if atividade.id_lista != turma: 
+        if atividade.id_lista != turma:
             turma.delete()
             return redirect(f'/area_professor/{request.user.id}')
         else:
