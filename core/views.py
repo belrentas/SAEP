@@ -78,9 +78,11 @@ def area_turma(request, id):
         turma = get_object_or_404(Turma, pk=id)
         atividades = Atividades.objects.all()
 
+        atividades_turma = atividades.filter(id_lista=turma)
+
         context = {
             'turma': turma,
-            'atividades': atividades,
+            'atividades_turma': atividades_turma,
         }
         return render(request, 'core/area_turma.html', context)
 
