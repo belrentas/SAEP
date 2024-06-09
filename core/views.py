@@ -65,30 +65,49 @@ def Cadastro_Turma(request, id):
                 First_Name = usuario.first_name,
             )
             turma.save()
-            return HttpResponse('Turma cadastrada')
+            return redirect(f'/area_professor/{request.user.id}')
         else:
             return HttpResponse('Verifique os campos')
 
-#cadastro Atividades
-def Cadastro_Atividades(request, id):
-    usuario = get_object_or_404(User, pk=id)
-    turmas = Turma.objects.all()
+def area_turma(request, id):
     if request.method == 'GET':
-        return render(request, 'core/cadastro_atividades.html',{'turmas': turmas})
+        turma = get_object_or_404(Turma, pk=id)
+        atividades = Atividades.objects.all()
+
+        context = {
+            'turma': turma,
+            'atividades': atividades,
+        }
+        return render(request, 'core/area_turma.html', context)
+
+#cadastro Atividades
+def Cadastro_Atividades(request, id_usuario, id_turma):
+    usuario = get_object_or_404(User, pk=id_usuario)
+    turma = get_object_or_404(Turma, pk=id_turma)
+
+    context = {
+        'usuario': usuario,
+        'turma': turma
+    }
+
+    if request.method == 'GET':
+        return render(request, 'core/cadastro_atividades.html', context)
     else:
         nome_atividade = request.POST.get('Nome_Atividade')
-        nome_turma = request.POST.get('Turmas')
-        for turma in turmas:
-            if turma.Nome_Turma in nome_turma:
-                if nome_atividade != '':
-                    atividade = Atividades.objects.create(
-                        Nome_item = nome_atividade,
-                        id_usuario = usuario,
-                        First_Name = usuario.first_name,
-                        id_lista = turma, 
-                        Nome_Turma = nome_turma,
-                    )
-                    atividade.save()
-                    return HttpResponse('Atividade cadastrada')
-                else:
-                    return HttpResponse('Verifique os campos')
+
+        atividade = Atividades.objects.create(
+            Nome_item = nome_atividade,
+            id_usuario = usuario,
+            First_Name = usuario.first_name,
+            id_lista = turma,
+            Nome_Turma = turma.Nome_Turma,
+        )
+        atividade.save()
+        return redirect(f'/area_turma/{request.user.id}')
+
+
+def area_professor(request, id):
+    if request.method == 'GET':
+        turmas = Turma.objects.all()
+        return render(request, 'core/area_professor.html', {'turmas': turmas})
+    

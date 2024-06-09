@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="professor-conteiner">
+    <h1>Turma: {{ turma.Nome_Turma }}</h1>
+    
+    <button><a href="{% url 'Cadastrar_Atividade' id_usuario=user.id id_turma=turma.id %}">Criar Atividade</a></button>
+
+    {% for atividade in atividades %}
+    <div>
+        <p>{{ atividade.id }}</p>
+        <a >{{ atividade.Nome_item }}</a>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
