@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect                    # REQUESTS PADROES DJANGO
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout                         # REQUERIMENTO DE LOGIN
-from django.contrib.auth.decorators import login_required
 from core.models import *
 
 
@@ -51,7 +50,6 @@ def Cadastro(request):
                 return redirect('/')
             
 #Cadastro Turma
-@login_required('/login/')
 def Cadastro_Turma(request, id):
     usuario = get_object_or_404(User, pk=id)
     if request.method == 'GET':
@@ -71,7 +69,6 @@ def Cadastro_Turma(request, id):
             return HttpResponse('Verifique os campos')
 
 #area da turma
-@login_required('/login/')
 def area_turma(request, id):
     if request.method == 'GET':
         turma = get_object_or_404(Turma, pk=id)
@@ -84,7 +81,6 @@ def area_turma(request, id):
         return render(request, 'core/area_turma.html', context)
 
 #cadastro Atividades
-@login_required('/login/')
 def Cadastro_Atividades(request, id_usuario, id_turma):
     usuario = get_object_or_404(User, pk=id_usuario)
     turma = get_object_or_404(Turma, pk=id_turma)
@@ -110,7 +106,6 @@ def Cadastro_Atividades(request, id_usuario, id_turma):
         return redirect(f'/area_turma/{request.user.id}')
 
 #area do professor
-@login_required('/login/')
 def area_professor(request, id):
     if request.method == 'GET':
         turmas = Turma.objects.all()
