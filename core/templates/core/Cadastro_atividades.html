@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="cadastro-conteiner">
+    <form id="cadastro" action="{% url 'Cadastro_Atividades' id=user.id %}" method="POST">
+        {% csrf_token %}
+        <p id="title-cadastro">Criar Atividade</p>
+        <input type="text" name="Nome_Atividade" placeholder="Nome" class="cadastro-input">
+        <select name="Turmas">
+            <option>{{ turma.Nome_Turma }}</option>
+        </select>
+
+
+        <button type="submit" id="cadastrar">Criar Atividade</button>
+    </form>
+</div>
+
+{% endblock content %}

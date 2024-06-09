@@ -2,18 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div id="cadastro-conteiner">
-    <form id="cadastro" action="{% url 'Cadastro' %}" method="POST">
-        {% csrf_token %}
-        <p id="title-cadastro">Cadastro</p>
-        <input type="text" name="Nome_Professor" placeholder="Nome" class="cadastro-input">
-        <input type="text" name="Sobrenome_Professor" placeholder="Sobrenome" class="cadastro-input">
-        <input type="email" name="Email_Professor" placeholder="E-mail" class="cadastro-input">
-        <input type="password" name="Senha_Professor" placeholder="Senha" class="cadastro-input">
-
-
-        <button type="submit" id="cadastrar">Cadastrar</button>
-    </form>
+<div id="professor-conteiner">
+    <p>Você não tem nenhuma turma cadastrada ainda</p>
 </div>
 
 {% endblock content %}

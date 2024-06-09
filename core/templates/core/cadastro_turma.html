@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="cadastro-conteiner">
+    <form id="cadastro" action="{% url 'Cadastro_Turma' id=user.id %}" method="POST">
+        {% csrf_token %}
+        <p id="title-cadastro">Cadastro</p>
+        <input type="text" name="Nome_Turma" placeholder="Nome" class="cadastro-input">
+
+        <button type="submit" id="cadastrar">Criar Turma</button>
+    </form>
+</div>
+
+{% endblock content %}

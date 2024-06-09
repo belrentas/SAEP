@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Login_Professor, name='Login_Professor'),
     path('Cadastro/', views.Cadastro, name='Cadastro'),
+    path('CadastrarTurma/<int:id>/', views.Cadastro_Turma, name='Cadastro_Turma'),
 ]
