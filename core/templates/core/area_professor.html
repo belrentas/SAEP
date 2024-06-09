@@ -3,14 +3,16 @@
 
 {% block content %}
 <div id="professor-conteiner">
+    <h1>Ola Prof.{{user.first_name}} {{user.last_name}}</h1>
+
     <button><a href="{% url 'Cadastro_Turma' id=user.id %}">Criar Turma</a></button>
     <button><a href="{% url 'logout_usuario' %}">Logout</a></button>
 
-    {% for turma in turmas %}
+    {% for turma in turmas_professor %}
     <div>
         <p>{{ turma.id }}</p>
         <a href="{% url 'area_turma' id=turma.id %}" >{{ turma.Nome_Turma }}</a>
-        <button>excluir</button>
+        <a href="{% url 'Confirm' id_turma=turma.id %}">excluir</a>
     </div>
     {% endfor %}
 </div>

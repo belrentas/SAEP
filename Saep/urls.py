@@ -11,4 +11,6 @@ urlpatterns = [
     path('CadastrarAtividade/<int:id_usuario>/<int:id_turma>/', views.Cadastro_Atividades, name='Cadastrar_Atividade'),
     path('area_professor/<int:id>/', views.area_professor, name='area_professor'),
     path('area_turma/<int:id>', views.area_turma, name='area_turma'),
+    path('delete/<int:id_turma>/', views.Excluir_Turma, name='Excluir_Turma' ),
+    path('confirm/<int:id_turma>/', views.confirm, name='Confirm')
 ]

@@ -108,11 +108,30 @@ def Cadastro_Atividades(request, id_usuario, id_turma):
             Nome_Turma = turma.Nome_Turma,
         )
         atividade.save()
-        return redirect(f'/area_turma/{request.user.id}')
+        return redirect(f'/area_turma/{turma.id}')
 
 #area do professor
 def area_professor(request, id):
     if request.method == 'GET':
         turmas = Turma.objects.all()
-        return render(request, 'core/area_professor.html', {'turmas': turmas})
+        turmas_professor = turmas.filter(id_usuario=request.user.id)
+        return render(request, 'core/area_professor.html', {'turmas_professor': turmas_professor})
     
+
+#excluir turma
+def Excluir_Turma(request, id_turma):
+    turma = get_object_or_404(Turma, pk=id_turma)
+    atividades = Atividades.objects.all()
+
+    for atividade in atividades:
+        if atividade.id_lista != turma: 
+            turma.delete()
+            return redirect(f'/area_professor/{request.user.id}')
+        else:
+            return HttpResponse('Essa turma tem atividades não e possivel excluir')
+
+def confirm(request, id_turma):
+    turma = get_object_or_404(Turma, pk=id_turma)
+    return render(request, 'core/confirmacao_excluir.html',{'turma':turma})
+   
+

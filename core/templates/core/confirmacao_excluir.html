@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="cadastro-conteiner">
+    <p>Deseja excluir esta turma?</p>
+    <a href="{% url 'Excluir_Turma' id_turma=turma.id %}">excluir</a>
+    <a href="{% url 'area_professor' id=user.id %}">Cancelar</a>
+</div>
+
+{% endblock content %}
