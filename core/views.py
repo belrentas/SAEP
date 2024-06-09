@@ -18,7 +18,7 @@ def Login_Professor(request):
         if usuario:
             login(request, usuario)
             # return redirect('area_professor.html')
-            return HttpResponse('foda')
+            return render(request, 'core/area_professor.html')
         
         else:
             return HttpResponse('E-mail ou Senha incorretos')
